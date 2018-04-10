@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="color"
+            type="com.ww.colormvvm.model.Color"/>
+        <variable
+            name="callback"
+            type="com.ww.colormvvm.ui.ColorClickCallback"/>
+    </data>
+    <LinearLayout
+        android:onClick="@{() ->  callback.onClick(color)}"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+        <LinearLayout
+            android:layout_marginTop="7.5dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.ww.colormvvm.weight.RingProgressBar
+                    android:id="@+id/C"
+                    app:progress="@{color.c}"
+                    style="@style/itme_cmyk_ring" />
+                <com.ww.colormvvm.weight.RingProgressBar
+                    android:id="@+id/M"
+                    app:progress="@{color.m}"
+                    android:layout_marginTop="5dp"
+                    style="@style/itme_cmyk_ring"/>
+                <com.ww.colormvvm.weight.RingProgressBar
+                    android:id="@+id/Y"
+                    app:progress="@{color.y}"
+                    android:layout_marginTop="5dp"
+                    style="@style/itme_cmyk_ring"/>
+                <com.ww.colormvvm.weight.RingProgressBar
+                    android:id="@+id/K"
+                    app:progress="@{color.k}"
+                    android:layout_marginTop="5dp"
+                    style="@style/itme_cmyk_ring"/>
+            </LinearLayout>
+            <RelativeLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="7.5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <com.ww.colormvvm.weight.VerticalTextView
+                    android:text="@{color.id}"
+                    android:id="@+id/num"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/trans_black_75"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <com.ww.colormvvm.weight.VerticalTextView
+                    android:text="@{color.jpname}"
+                    android:id="@+id/jp_name"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/trans_black_75"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="7.5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.ww.colormvvm.weight.VerticalTextView
+                android:id="@+id/hex"
+                android:text="@{color.hex}"
+                android:textColor="@color/trans_black_75"
+                android:textSize="10sp"
+                app:fontFamily="sans-serif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/RGB"
+                android:layout_toRightOf="@id/hex"
+                android:layout_marginLeft="3dp"
+                android:layout_width="8dp"
+                android:layout_height="wrap_content">
+                <com.ww.colormvvm.weight.VerticalProgressBar
+                    android:id="@+id/RGB_B"
+                    app:progress="@{color.b}"
+                    style="@style/item_rgb_bar" />
+                <com.ww.colormvvm.weight.VerticalProgressBar
+                    android:layout_marginLeft="1dp"
+                    android:id="@+id/RGB_G"
+                    app:progress="@{color.g}"
+                    style="@style/item_rgb_bar" />
+                <com.ww.colormvvm.weight.VerticalProgressBar
+                    android:layout_marginLeft="1dp"
+                    app:progress="@{color.r}"
+                    android:id="@+id/RGB_R"
+                    style="@style/item_rgb_bar"  />
+            </LinearLayout>
+            <com.ww.colormvvm.weight.VerticalTextView
+                android:layout_toRightOf="@id/RGB"
+                android:text="@{color.enname}"
+                android:id="@+id/en_name"
+                android:textColor="@color/trans_black_75"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

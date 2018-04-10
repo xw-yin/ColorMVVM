@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">日本の伝統色</string>
+    <string name="C">C</string>
+    <string name="M">M</string>
+    <string name="Y">Y</string>
+    <string name="K">K</string>
+    <string name="R">R</string>
+    <string name="G">G</string>
+    <string name="B">B</string>
+    <string name="loading_colors">载入颜色中...</string>
+    <string name="colors_list">颜色列表</string>
+</resources>

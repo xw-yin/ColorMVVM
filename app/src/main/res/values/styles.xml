@@ -1,0 +1,67 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+    <style name="itme_cmyk_ring">
+        <item name="max">100</item>
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="text_visibility">false</item>
+        <item name="unreached_bar_width">6dp</item>
+        <item name="reached_bar_width">6dp</item>
+        <item name="reached_bar_color">@color/trans_black_75</item>
+        <item name="unreached_bar_color">@color/trans_black_25</item>
+        <item name="start_angle">-90</item>
+    </style>
+    <style name="item_rgb_bar">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="text_visibility">false</item>
+        <item name="max">255</item>
+        <item name="reached_bar_color">@color/trans_black_75</item>
+        <item name="unreached_bar_color">@color/trans_black_25</item>
+        <item name="unreached_bar_width">1dp</item>
+        <item name="reached_bar_width">1dp</item>
+    </style>
+    <style name="vertical_text_default">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/trans_black_75</item>
+    </style>
+
+    <style name="info_cmyk_ring">
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="unreached_bar_width">2dp</item>
+        <item name="reached_bar_width">2dp</item>
+        <item name="unreached_bar_color">@color/trans_black_25</item>
+        <item name="start_angle">-90</item>
+        <item name="text_size">15sp</item>
+    </style>
+
+    <style name="info_division">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/trans_black_75</item>
+    </style>
+
+    <style name="info_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/trans_black_75</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="info_RGB_number">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/trans_black_75</item>
+    </style>
+</resources>

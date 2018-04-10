@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomProgressBar">
+        <attr name="progress" format="integer"/>
+        <attr name="max" format="integer"/>
+        <attr name="reached_bar_color" format="color"/>
+        <attr name="unreached_bar_visibility" format="boolean"/>
+        <attr name="unreached_bar_color" format="color"/>
+        <attr name="text_visibility" format="boolean"/>
+        <attr name="text_size" format="dimension"/>
+        <attr name="text_color" format="color"/>
+        <attr name="text_offset" format="dimension"/>
+        <attr name="duration" format="integer"/>
+        <attr name="prefix" format="string"/>
+        <attr name="suffix" format="string"/>
+
+        <!-- for Horizontal Progress Bar -->
+        <attr name="reached_bar_height" format="dimension"/>
+        <attr name="unreached_bar_height" format="dimension"/>
+
+        <!-- for Vertical Progress Bar and Circular Progress Bar -->
+        <attr name="reached_bar_width" format="dimension"/>
+        <attr name="unreached_bar_width" format="dimension"/>
+
+        <!-- for Arc Progress Bar -->
+        <attr name="start_angle" format="float"/>
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+</resources>
