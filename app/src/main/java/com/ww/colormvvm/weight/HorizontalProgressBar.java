@@ -39,7 +39,6 @@ public class HorizontalProgressBar extends BaseProgressBar {
 
         mReachedBarHeight = a.getDimension(R.styleable.CustomProgressBar_reached_bar_height, default_reached_bar_height);
         mUnreachedBarHeight = a.getDimension(R.styleable.CustomProgressBar_unreached_bar_height, default_unreached_bar_height);
-
         a.recycle();
         setupPaints();
     }

@@ -30,7 +30,6 @@ import com.ww.colormvvm.modelview.ColorDetailViewModel;
 public class ColorDetailFragment extends Fragment {
     private FragmentColordetailBinding fragmentColordetailBinding;
     private static final String KEY_COLOR_ID = "color_id";
-    private int endColor;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,12 +45,6 @@ public class ColorDetailFragment extends Fragment {
         );
         final ColorDetailViewModel model= ViewModelProviders.of(this,factory).get(ColorDetailViewModel.class);
         subscribeToModel(model);
-        if(savedInstanceState==null){
-            endColor=getArguments().getInt("endColor");
-        }else{
-            endColor=savedInstanceState.getInt("endColor");
-            ((MainActivity)getActivity()).changeBg(endColor);
-        }
     }
 private void subscribeToModel(final ColorDetailViewModel colorDetailViewModel){
         colorDetailViewModel.getObservableColor().observe(this, new Observer<ColorEntity>() {
@@ -64,11 +57,10 @@ private void subscribeToModel(final ColorDetailViewModel colorDetailViewModel){
             }
         });
 }
-    public static ColorDetailFragment forColor(String colorId,int endColor) {
+    public static ColorDetailFragment forColor(String colorId) {
         ColorDetailFragment fragment = new ColorDetailFragment();
         Bundle args = new Bundle();
         args.putString(KEY_COLOR_ID, colorId);
-        args.putInt("endColor", endColor);
         fragment.setArguments(args);
         return fragment;
     }
@@ -76,6 +68,5 @@ private void subscribeToModel(final ColorDetailViewModel colorDetailViewModel){
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("endColor",endColor);
     }
 }

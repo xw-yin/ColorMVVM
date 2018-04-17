@@ -10,16 +10,10 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-/**
- * 在 {@link TextView} 的基础上支持文字竖排
- *
- * <p>默认将文字竖排显示, 可使用 {@link #setVerticalMode(boolean)} 来开启/关闭竖排功能</p>
- */
+
 public class VerticalTextView extends android.support.v7.widget.AppCompatTextView {
 
-    /**
-     * 是否将文字显示成竖排
-     */
+
     private boolean mIsVerticalMode = true;
 
     private int mLineCount; // 行数

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="color"
-            type="com.ww.colormvvm.model.Color"/>
+            type="com.ww.colormvvm.db.entity.ColorEntity"/>
     </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -14,7 +14,7 @@
     android:layout_height="0dp"
     android:layout_weight="1"></View>
     <LinearLayout
-        android:background="@color/trans_black_75"
+        android:background="@color/trans_white_75"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

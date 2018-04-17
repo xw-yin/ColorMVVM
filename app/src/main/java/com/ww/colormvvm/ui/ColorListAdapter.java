@@ -10,24 +10,24 @@ import android.view.ViewGroup;
 
 import com.ww.colormvvm.R;
 import com.ww.colormvvm.databinding.ItemColorBinding;
+import com.ww.colormvvm.db.entity.ColorEntity;
 import com.ww.colormvvm.model.Color;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by wangwang on 2018/3/22.
  */
 
 public class ColorListAdapter extends RecyclerView.Adapter<ColorListAdapter.ColorViewHolder>{
-    List<? extends Color> mColorList;
+    List<? extends ColorEntity> mColorList;
     @Nullable
     private final ColorClickCallback colorClickCallback;
 
     public ColorListAdapter(ColorClickCallback colorClickCallback) {
         this.colorClickCallback = colorClickCallback;
     }
-    public void setmColorList(final List<? extends Color> colorList) {
+    public void setmColorList(final List<? extends ColorEntity> colorList) {
         if (mColorList == null) {
             mColorList = colorList;
             notifyItemRangeInserted(0, colorList.size());
@@ -72,7 +72,6 @@ public class ColorListAdapter extends RecyclerView.Adapter<ColorListAdapter.Colo
     @Override
     public void onBindViewHolder(@NonNull ColorViewHolder holder, int position) {
         holder.itemColorBinding.setColor(mColorList.get(position));
-        holder.itemColorBinding.view.setBackgroundColor(android.graphics.Color.parseColor(mColorList.get(position).getHex()));
         holder.itemColorBinding.num.setTextColor(android.graphics.Color.parseColor(mColorList.get(position).getHex()));
         holder.itemColorBinding.executePendingBindings();
     }

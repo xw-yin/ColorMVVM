@@ -36,7 +36,6 @@ public class RingProgressBar extends BaseProgressBar {
         mReachedBarWidth = a.getDimension(R.styleable.CustomProgressBar_reached_bar_width, default_reached_bar_width);
         mUnreachedBarWidth = a.getDimension(R.styleable.CustomProgressBar_unreached_bar_width, default_unreached_bar_width);
         mStartAngle = a.getFloat(R.styleable.CustomProgressBar_start_angle, 0);
-
         a.recycle();
         setupPaints();
     }

@@ -67,7 +67,6 @@ public class BaseProgressBar extends View {
 
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomProgressBar, defStyleAttr, 0);
         mReachedBarColor = a.getColor(R.styleable.CustomProgressBar_reached_bar_color, DEFAULT_REACHED_BAR_COLOR);
-
         mIfDrawUnreachedBar = a.getBoolean(R.styleable.CustomProgressBar_unreached_bar_visibility, true);
         mUnreachedBarColor = a.getColor(R.styleable.CustomProgressBar_unreached_bar_color, DEFAULT_UNREACHED_BAR_COLOR);
 
@@ -86,7 +85,6 @@ public class BaseProgressBar extends View {
             mShownProgress = mActualProgress = mMaxProgress;
         }
         mProgressDuration = a.getInt(R.styleable.CustomProgressBar_duration, 1500);
-
         a.recycle();
     }
     protected void setupPaints() {

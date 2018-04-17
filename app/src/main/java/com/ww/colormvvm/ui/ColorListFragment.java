@@ -3,6 +3,9 @@ package com.ww.colormvvm.ui;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -17,6 +20,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.SnapHelper;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +32,9 @@ import com.ww.colormvvm.R;
 import com.ww.colormvvm.databinding.FragmentColorlistBinding;
 import com.ww.colormvvm.db.entity.ColorEntity;
 import com.ww.colormvvm.model.Color;
+import com.ww.colormvvm.modelview.ColorDetailViewModel;
 import com.ww.colormvvm.modelview.ColorListViewModel;
+import com.ww.colormvvm.modelview.MainViewModel;
 
 import java.util.List;
 
@@ -42,8 +48,8 @@ public class ColorListFragment extends Fragment{
     private FragmentColorlistBinding fragmentColorlistBinding;
     private SnapHelper snapHelper;
     private Configuration configuration;
-    private Color colorNow;
-    private int endColor;
+    private ColorListViewModel viewModel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,22 +66,17 @@ public class ColorListFragment extends Fragment{
         }else  if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
             fragmentColorlistBinding.setVisible(false);
         }
+
        return fragmentColorlistBinding.getRoot();
-    }
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if(savedInstanceState!=null) {
-            colorNow= (Color) savedInstanceState.getSerializable("colorNow");
-        }
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final ColorListViewModel viewModel = ViewModelProviders.of(this).get(ColorListViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ColorListViewModel.class);
         subscribeUi(viewModel);
     }
+
     private void subscribeUi(ColorListViewModel viewModel) {
         viewModel.getColors().observe(this, new Observer<List<ColorEntity>>() {
             @Override
@@ -83,52 +84,50 @@ public class ColorListFragment extends Fragment{
                 if (colorEntities != null) {
                     fragmentColorlistBinding.setIsLoading(false);
                     colorListAdapter.setmColorList(colorEntities);
-                    if(colorNow==null){
-                        colorNow=colorEntities.get(0);
-                    }
-                    changeColor(colorNow);
                 }else {
                     fragmentColorlistBinding.setIsLoading(true);
                 }
                 fragmentColorlistBinding.executePendingBindings();
             }
         });
+        viewModel.getSelectedColor().observe(this, new Observer<ColorEntity>() {
+            @Override
+            public void onChanged(@Nullable ColorEntity colorEntity) {
+                if(colorEntity!=null) {
+                    changeColor(colorEntity);
+                }
+            }
+        });
     }
 
     private final ColorClickCallback colorClickCallback = new ColorClickCallback() {
         @Override
-        public void onClick(Color color) {
+        public void onClick(ColorEntity colorEntity) {
             if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                colorNow=color;
-                changeColor(colorNow);
+                viewModel.changeEndColor(colorEntity);
            if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
-                    ((MainActivity) getActivity()).show(color,endColor);
+                    ((MainActivity) getActivity()).show(colorEntity);
                 }
             }
         }
     };
-    private void changeColor(Color color){
-        fragmentColorlistBinding.setColor(color);
-        endColor = android.graphics.Color.parseColor(color.getHex());
-        fragmentColorlistBinding.rNumber.setNumberSetOfInt(Integer.valueOf(color.getR())).startAnim();
-        fragmentColorlistBinding.gNumber.setNumberSetOfInt(Integer.valueOf(color.getG())).startAnim();
-        fragmentColorlistBinding.bNumber.setNumberSetOfInt(Integer.valueOf(color.getB())).startAnim();
+    private void changeColor(ColorEntity colorEntity){
+        fragmentColorlistBinding.setColor(colorEntity);
         decreaseTextAlpha();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                fragmentColorlistBinding.colorNameJa.setText(color.getJpname());
-                fragmentColorlistBinding.colorNameEn.setText(color.getEnname());
+                fragmentColorlistBinding.colorNameJa.setText(colorEntity.getJpname());
+                fragmentColorlistBinding.colorNameEn.setText(colorEntity.getEnname());
             }
         },500);
         increaseTextAlpha();
-        ((MainActivity)getActivity()).changeBg(endColor);
+        ((MainActivity)getActivity()).changeBg(android.graphics.Color.parseColor(colorEntity.getHex()));
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("colorNow",colorNow);
     }
 
     private void increaseTextAlpha(){

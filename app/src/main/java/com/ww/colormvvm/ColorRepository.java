@@ -16,16 +16,21 @@ public class ColorRepository {
     private static ColorRepository sInstance;
 
     private final ColorDatabase mDatabase;
-    private MediatorLiveData<List<ColorEntity>> mObservableProducts;
-
+    private MediatorLiveData<List<ColorEntity>> colors;
+    private MediatorLiveData<ColorEntity> firstColor;
     private ColorRepository(final ColorDatabase database) {
         mDatabase = database;
-        mObservableProducts = new MediatorLiveData<>();
-
-        mObservableProducts.addSource(mDatabase.colorDao().loadAllColors(),
+         colors= new MediatorLiveData<>();
+        firstColor=new MediatorLiveData<>();
+        firstColor.addSource(mDatabase.colorDao().getFirstColor(),colorEntity -> {
+            if (mDatabase.getDatabaseCreated().getValue() != null) {
+                firstColor.postValue(colorEntity);
+            }
+        });
+        colors.addSource(mDatabase.colorDao().loadAllColors(),
                 colorEntities -> {
                     if (mDatabase.getDatabaseCreated().getValue() != null) {
-                        mObservableProducts.postValue(colorEntities);
+                        colors.postValue(colorEntities);
                     }
                 });
     }
@@ -45,9 +50,12 @@ public class ColorRepository {
      * Get the list of products from the database and get notified when the data changes.
      */
     public LiveData<List<ColorEntity>> getColors() {
-        return mObservableProducts;
+        return colors;
     }
     public LiveData<ColorEntity> loadColor(final String colorId) {
         return mDatabase.colorDao().loadColor(colorId);
+    }
+    public LiveData<ColorEntity> getFirstColor() {
+        return firstColor;
     }
 }

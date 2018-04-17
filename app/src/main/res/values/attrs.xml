@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="duration" format="integer"/>
     <declare-styleable name="CustomProgressBar">
         <attr name="progress" format="integer"/>
         <attr name="max" format="integer"/>
@@ -10,9 +11,9 @@
         <attr name="text_size" format="dimension"/>
         <attr name="text_color" format="color"/>
         <attr name="text_offset" format="dimension"/>
-        <attr name="duration" format="integer"/>
         <attr name="prefix" format="string"/>
         <attr name="suffix" format="string"/>
+        <attr name="duration"/>
 
         <!-- for Horizontal Progress Bar -->
         <attr name="reached_bar_height" format="dimension"/>
@@ -25,5 +26,11 @@
         <!-- for Arc Progress Bar -->
         <attr name="start_angle" format="float"/>
         <attr name="radius" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="ScrollNumberView">
+        <attr name="intNum" format="integer"/>
+        <attr name="floatNum" format="float"/>
+        <attr name="delay" format="integer"/>
+        <attr name="duration"/>
     </declare-styleable>
 </resources>

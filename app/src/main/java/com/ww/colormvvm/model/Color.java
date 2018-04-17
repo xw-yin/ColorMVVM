@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by ww on 2017/10/20.
  */
 
-public interface Color extends Serializable {
+public interface Color {
      int getB();
      int getC();
      int getG();

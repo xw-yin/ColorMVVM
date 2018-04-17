@@ -5,9 +5,11 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.ww.colormvvm.ColorApp;
 import com.ww.colormvvm.db.entity.ColorEntity;
+import com.ww.colormvvm.model.Color;
 
 import java.util.List;
 
@@ -16,16 +18,27 @@ import java.util.List;
  */
 
 public class ColorListViewModel extends AndroidViewModel {
-    private final MediatorLiveData<List<ColorEntity>> mObservableColors;
+    private final MediatorLiveData<List<ColorEntity>> allColors;
+    private final MediatorLiveData<ColorEntity> selectedColor;
+    public LiveData<ColorEntity> getSelectedColor() {
+        return selectedColor;
+    }
+    public void changeEndColor(ColorEntity colorEntity){
+        selectedColor.setValue(colorEntity);
+    }
     public ColorListViewModel(@NonNull Application application) {
         super(application);
-        mObservableColors = new MediatorLiveData<>();
-        mObservableColors.setValue(null);
+        selectedColor=new MediatorLiveData<>();
+        allColors = new MediatorLiveData<>();
+        allColors.setValue(null);
         LiveData<List<ColorEntity>> colors = ((ColorApp) application).getRepository()
                 .getColors();
-        mObservableColors.addSource(colors, mObservableColors::setValue);
+        LiveData<ColorEntity> color = ((ColorApp) application).getRepository()
+                .getFirstColor();
+        allColors.addSource(colors, allColors::setValue);
+        selectedColor.addSource(color,selectedColor::setValue);
     }
     public LiveData<List<ColorEntity>> getColors() {
-        return mObservableColors;
+        return allColors;
     }
 }

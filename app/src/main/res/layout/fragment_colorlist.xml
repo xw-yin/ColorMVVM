@@ -19,7 +19,7 @@
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     app:title="@string/app_name"
-                    app:titleTextColor="@color/trans_black_75"
+                    app:titleTextColor="@color/trans_white_75"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"></android.support.v7.widget.Toolbar>
         <LinearLayout
@@ -122,6 +122,7 @@
                                             android:text="@string/R"/>
                                         <com.ww.colormvvm.weight.ScrollNumberView
                                             android:id="@+id/r_number"
+                                            app:intNum="@{color.r}"
                                             android:layout_marginTop="5dp"
                                             android:layout_marginBottom="2dp"
                                             style="@style/info_RGB_number" />
@@ -137,6 +138,7 @@
                                             android:text="@string/G"/>
                                         <com.ww.colormvvm.weight.ScrollNumberView
                                             android:id="@+id/g_number"
+                                            app:intNum="@{color.g}"
                                             android:layout_marginTop="5dp"
                                             android:layout_marginBottom="2dp"
                                             style="@style/info_RGB_number" />
@@ -151,6 +153,7 @@
                                             style="@style/info_label"
                                             android:text="@string/B"/>
                                         <com.ww.colormvvm.weight.ScrollNumberView
+                                            app:intNum="@{color.b}"
                                             android:layout_marginBottom="2dp"
                                             android:layout_marginTop="5dp"
                                             android:id="@+id/b_number"
@@ -171,7 +174,7 @@
                                     android:layout_height="wrap_content"
                                     android:textSize="40sp"
                                     android:layout_centerHorizontal="true"
-                                    android:textColor="@color/trans_black_75" />
+                                    android:textColor="@color/trans_white_75" />
                                 <TextView
                                     android:id="@+id/color_name_en"
                                     android:layout_width="match_parent"
@@ -180,7 +183,7 @@
                                     android:layout_below="@+id/color_name_ja"
                                     android:textSize="15sp"
                                     android:textAlignment="center"
-                                    android:textColor="@color/trans_black_75" />
+                                    android:textColor="@color/trans_white_75" />
                         </RelativeLayout>
                 </RelativeLayout>
         </LinearLayout>

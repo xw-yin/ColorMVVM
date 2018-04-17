@@ -6,11 +6,13 @@ import android.support.annotation.NonNull;
 
 import com.ww.colormvvm.model.Color;
 
+import java.io.Serializable;
+
 /**
  * Created by wangwang on 2018/3/22.
  */
 @Entity(tableName = "colors")
-public class ColorEntity implements Color {
+public class ColorEntity implements Color,Serializable{
     private int B;
     private int C;
     private int G;

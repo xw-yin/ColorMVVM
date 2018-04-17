@@ -21,6 +21,9 @@ public interface ColorDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<ColorEntity> products);
 
-    @Query("select * from colors where id = :colorId")
+    @Query("select * from colors where id = :colorId ")
     LiveData<ColorEntity> loadColor(String colorId);
+
+    @Query("select * from colors  limit 1")
+    LiveData<ColorEntity> getFirstColor();
 }
