@@ -25,9 +25,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 import com.ww.colormvvm.R;
 import com.ww.colormvvm.databinding.FragmentColorlistBinding;
 import com.ww.colormvvm.db.entity.ColorEntity;
@@ -46,25 +47,35 @@ public class ColorListFragment extends Fragment{
     public static final String TAG = "ColorListViewModel";
     private ColorListAdapter colorListAdapter;
     private FragmentColorlistBinding fragmentColorlistBinding;
-    private SnapHelper snapHelper;
     private Configuration configuration;
     private ColorListViewModel viewModel;
-
+    private GridLayoutManager gridLayoutManager;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentColorlistBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_colorlist,container,false);
-        fragmentColorlistBinding.colorsList.setLayoutManager(new GridLayoutManager(getContext(),6));
-        snapHelper=new GravitySnapHelper(Gravity.TOP);
-        snapHelper.attachToRecyclerView(fragmentColorlistBinding.colorsList);
+        gridLayoutManager=new GridLayoutManager(getContext(),6);
+        fragmentColorlistBinding.colorsList.setLayoutManager(gridLayoutManager);
         colorListAdapter=new ColorListAdapter(colorClickCallback);
         fragmentColorlistBinding.colorsList.setAdapter(colorListAdapter);
         configuration = getResources().getConfiguration();
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
         {
-           fragmentColorlistBinding.setVisible(true);
+            gridLayoutManager.setSpanCount(7);
+            fragmentColorlistBinding.setVisible(true);
+            Window window=getActivity().getWindow();
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+            window.setAttributes(params);
+            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }else  if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            gridLayoutManager.setSpanCount(6);
             fragmentColorlistBinding.setVisible(false);
+            Window window=getActivity().getWindow();
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            window.setAttributes(params);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
        return fragmentColorlistBinding.getRoot();

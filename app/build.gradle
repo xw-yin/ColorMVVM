@@ -21,8 +21,6 @@ android {
     dataBinding{
         enabled=true;
     }
-    productFlavors {
-    }
 
     lintOptions {
         abortOnError false
@@ -47,7 +45,6 @@ dependencies {
     implementation deps.room.runtime
     annotationProcessor deps.room.compiler
     implementation deps.gson
-    implementation deps.snaphelper
     // Android Testing Support Library's runner and rules
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.atsl.rules

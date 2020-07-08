@@ -1,5 +1,7 @@
 package com.ww.colormvvm.ui;
 
+import android.view.View;
+
 import com.ww.colormvvm.db.entity.ColorEntity;
 
 /**

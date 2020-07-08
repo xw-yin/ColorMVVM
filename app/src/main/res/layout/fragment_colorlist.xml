@@ -16,12 +16,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    app:title="@string/app_name"
-                    app:titleTextColor="@color/trans_white_75"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"></android.support.v7.widget.Toolbar>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,19 +44,20 @@
                 </LinearLayout>
                 <RelativeLayout
                     app:visibleGone="@{visible}"
-                    android:layout_weight="7"
+                    android:layout_weight="5"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true">
                         <LinearLayout
-                            android:paddingLeft="20dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_centerVertical="true"
                             android:id="@+id/info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                                 <View style="@style/info_division"/>
                                 <TextView
-                                    android:layout_marginTop="2dp"
+                                    android:layout_marginTop="5dp"
                                     style="@style/info_label"
                                     android:text="@string/C"/>
                                 <com.ww.colormvvm.weight.RingProgressBar
@@ -75,7 +70,7 @@
 
                                 <View style="@style/info_division"/>
                                 <TextView
-                                    android:layout_marginTop="2dp"
+                                    android:layout_marginTop="5dp"
                                     style="@style/info_label"
                                     android:text="@string/M"/>
                                 <com.ww.colormvvm.weight.RingProgressBar
@@ -88,7 +83,7 @@
 
                                 <View style="@style/info_division"/>
                                 <TextView
-                                    android:layout_marginTop="2dp"
+                                    android:layout_marginTop="5dp"
                                     style="@style/info_label"
                                     android:text="@string/Y"/>
                                 <com.ww.colormvvm.weight.RingProgressBar
@@ -101,7 +96,7 @@
 
                                 <View style="@style/info_division"/>
                                 <TextView
-                                    android:layout_marginTop="2dp"
+                                    android:layout_marginTop="5dp"
                                     style="@style/info_label"
                                     android:text="@string/K"/>
                                 <com.ww.colormvvm.weight.RingProgressBar
@@ -116,15 +111,16 @@
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
+
                                         <TextView
-                                            android:layout_marginTop="2dp"
                                             style="@style/info_label"
-                                            android:text="@string/R"/>
+                                            android:layout_marginTop="5dp"
+                                            android:text="@string/R" />
                                         <com.ww.colormvvm.weight.ScrollNumberView
                                             android:id="@+id/r_number"
                                             app:intNum="@{color.r}"
-                                            android:layout_marginTop="5dp"
-                                            android:layout_marginBottom="2dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="5dp"
                                             style="@style/info_RGB_number" />
                                 </RelativeLayout>
 
@@ -133,14 +129,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
                                         <TextView
-                                            android:layout_marginTop="2dp"
+                                            android:layout_marginTop="5dp"
                                             style="@style/info_label"
                                             android:text="@string/G"/>
                                         <com.ww.colormvvm.weight.ScrollNumberView
                                             android:id="@+id/g_number"
                                             app:intNum="@{color.g}"
-                                            android:layout_marginTop="5dp"
-                                            android:layout_marginBottom="2dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="5dp"
                                             style="@style/info_RGB_number" />
                                 </RelativeLayout>
 
@@ -149,13 +145,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
                                         <TextView
-                                            android:layout_marginTop="2dp"
+                                            android:layout_marginTop="5dp"
                                             style="@style/info_label"
                                             android:text="@string/B"/>
                                         <com.ww.colormvvm.weight.ScrollNumberView
                                             app:intNum="@{color.b}"
-                                            android:layout_marginBottom="2dp"
-                                            android:layout_marginTop="5dp"
+                                            android:layout_marginBottom="5dp"
+                                            android:layout_marginTop="10dp"
                                             android:id="@+id/b_number"
                                             style="@style/info_RGB_number" />
                                 </RelativeLayout>
@@ -163,6 +159,7 @@
                         </LinearLayout>
 
                         <RelativeLayout
+                            android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="8dp"
@@ -183,7 +180,8 @@
                                     android:layout_below="@+id/color_name_ja"
                                     android:textSize="15sp"
                                     android:textAlignment="center"
-                                    android:textColor="@color/trans_white_75" />
+                                    android:textColor="@color/trans_white_75"
+                                    android:gravity="center_horizontal" />
                         </RelativeLayout>
                 </RelativeLayout>
         </LinearLayout>
